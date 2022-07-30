@@ -3,12 +3,12 @@ pipeline {
     tools {nodejs "nodejs"}
     
     stages {
-        stage("Install") {
-            steps {
-                git branch: 'main', url: 'https://github.com/minhtanngo/devops-swe40006.git'
-                sh "npm install"
-            }
-        }
+        // stage("Install") {
+        //     steps {
+        //         git branch: 'main', url: 'https://github.com/minhtanngo/devops-swe40006.git'
+        //         sh "npm install"
+        //     }
+        // }
         
         stage("Build") {
             steps {
