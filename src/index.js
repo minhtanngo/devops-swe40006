@@ -6,9 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import './firebase';
 import { getAnalytics, logEvent } from "firebase/analytics";
 
-const analytics = getAnalytics();
-logEvent(analytics, 'notification_received');
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
