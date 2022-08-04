@@ -1,17 +1,15 @@
-# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
 version: 2.1
 
 jobs:
-  # build stage
   Build:  
-    working_directory: ~/repo     
-    docker:                          
+    working_directory: ~/repo         
+    docker:                            
       - image: circleci/node:14
-    steps:                           
-      - checkout                       
-      - run: npm ci                  
-      - run: CI=false npm run build  
-      - persist_to_workspace:          
+    steps:                             
+      - checkout                      
+      - run: npm ci                 
+      - run: CI=false npm run build    
+      - persist_to_workspace:         
           root: ~/repo
           paths: ['.']
   Test:
@@ -19,15 +17,45 @@ jobs:
     docker:
       - image: circleci/node:14
     steps:
-      - attach_workspace:            
+      - attach_workspace:              
           at: .
       - run: npm run test            
+  Store_Artifacts:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:14
+    steps:
+      - attach_workspace:
+          at: .
+      - store_artifacts:             
+          path: ./build
+          destination: build/
+  Deploy:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:14
+    steps:
+      - attach_workspace:
+          at: .
+      - run:                          
+          name: Deploy Main branch to Firebase
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 
 # Invoke jobs via workflows
 workflows:
-  Buid_and_Test:  
+  Build_Test_Deploy:    
     jobs:
     - Build
     - Test:
         requires:
           - Build
+    - Store_Artifacts:
+        requires:
+          - Test
+    - Depploy:
+        requires:
+          - Test
+        filters:         
+          branches:
+            only:
+              - main
