@@ -25,9 +25,9 @@ jobs:
 
 # Invoke jobs via workflows
 workflows:
-  Buid_Test_Deploy:  
+  Buid_and_Test:  
     jobs:
     - Build
-    - test:
+    - Test:
         requires:
           - Build
