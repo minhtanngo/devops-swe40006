@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './firebase';
+
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getPerformance } from "firebase/performance";
@@ -32,5 +33,8 @@ const firebaseConfig = {
 reportWebVitals(console.log);
 // getPerformance();
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const perf = getPerformance(app);
+// const analytics = getAnalytics(app);
+// const perf = getPerformance(app);
+
+app.getAnalytics()
+app.getPerformance()
