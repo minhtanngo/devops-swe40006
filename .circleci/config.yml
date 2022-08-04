@@ -1,0 +1,33 @@
+# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
+version: 2.1
+
+jobs:
+  # build stage
+  Build:  
+    working_directory: ~/repo     
+    docker:                          
+      - image: circleci/node:14
+    steps:                           
+      - checkout                       
+      - run: npm ci                  
+      - run: CI=false npm run build  
+      - persist_to_workspace:          
+          root: ~/repo
+          paths: ['.']
+  Test:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:14
+    steps:
+      - attach_workspace:            
+          at: .
+      - run: npm run test            
+
+# Invoke jobs via workflows
+workflows:
+  Buid_Test_Deploy:  
+    jobs:
+    - Build
+    - test:
+        requires:
+          - Build
