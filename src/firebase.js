@@ -20,7 +20,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-// const perf = getPerformance(app);
-app.getAnalytics()
-app.getPerformance()
+
+const analytics = getAnalytics(app);
+const perf = getPerformance(app);
