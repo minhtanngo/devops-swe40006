@@ -52,7 +52,7 @@ workflows:
     - Store_Artifacts:
         requires:
           - Test
-    - Depploy:
+    - Deploy:
         requires:
           - Test
         filters:         
