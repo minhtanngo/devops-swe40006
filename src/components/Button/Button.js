@@ -1,4 +1,5 @@
 
+import './Button.css'
 const Button = ({ setToggle, btnTxt }) => {
   
     // data-testid is a testing id 
