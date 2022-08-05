@@ -1,26 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import Button from "./components/Button/Button";
+import Text from "./components/Text/Text";
+import { useState } from "react";
+  
+const App = () => {
+  const [toggle, setToggle] = useState(true);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> 
-          Change the source code to test pipeline!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Text toggle={toggle} displayTxt="Hello, Team Tan and Manh DevOps SWE40006"/>
+      <Button setToggle={setToggle} btnTxt="Toggle Text"/>
     </div>
   );
 }
-
+  
 export default App;
