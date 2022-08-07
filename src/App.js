@@ -8,7 +8,7 @@ const App = () => {
   
   return (
     <div className="App-header">
-      <Text toggle={toggle} displayTxt="Hello, Team Tan and Manh DevOps SWE40006......."/>
+      <Text toggle={toggle} displayTxt="Hello, Team Tan and Manh DevOps SWE40006"/>
       <Button setToggle={setToggle} btnTxt="Toggle Text"/>
     </div>
   );
